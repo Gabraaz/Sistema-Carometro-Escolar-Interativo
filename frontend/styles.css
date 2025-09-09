@@ -1,0 +1,154 @@
+/* ===================== */
+/* Body como wrapper flexível */
+/* ===================== */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* ocupa toda a tela */
+  font-family: 'Baloo 2', sans-serif;
+  overflow: hidden; /* sem scroll */
+  display: flex;
+  flex-direction: column;
+  background: url("images/fundoTelaLogin.png") no-repeat center center;
+  background-size: cover; /* preenche a tela proporcionalmente */
+  background-attachment: fixed; /* opcional: mantém fixo quando houver scroll */
+}
+
+
+
+/* ===================== */
+/* Header e Footer fixos */
+/* ===================== */
+header,
+footer {
+  height: 58px;
+  background-color: #003075; /* mantém a cor azul */
+  color: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 10;
+}
+
+header {
+  top: 0;
+}
+footer {
+  bottom: 0;
+}
+
+/* ===================== */
+/* Main ocupa o espaço entre header e footer */
+/* ===================== */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center; /* centraliza verticalmente */
+  height: calc(100vh - 58px - 58px); /* espaço entre header e footer */
+  box-sizing: border-box;
+  padding: 0 20px; /* espaço lateral em telas pequenas */
+}
+
+/* ===================== */
+/* Caixa de Login compacta */
+/* ===================== */
+.login-box {
+  background-color: white; /* cor da área do login */
+  padding: 30px 20px; /* compacta o espaçamento interno */
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px; /* deixa menor que antes */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.login-box h1 {
+  margin-bottom: 10px; /* menor que antes */
+}
+
+.login-box .welcome {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-box .field-label {
+  display: block;
+  text-align: left;
+  margin: 8px 0 5px;
+  font-size: 0.9rem;
+}
+
+.login-box .input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-box .password-wrapper {
+  position: relative;
+}
+
+.login-box .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.login-box .btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #003075;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-box .btn:hover {
+  background-color: #001f4d;
+}
+
+/* Cabeçalho */
+header {
+  width: 100%;
+  height: 58px;
+  background-color: #dee0e4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start ;
+  padding-left: 10px;
+  flex-shrink: 0; /* evita encolher */
+}
+
+header img {
+  width: 150px;
+  max-width: 300px;
+  height: auto;
+} /* Rodapé */
+footer {
+  width: 100%;
+  max-width: 1920px;
+  height: 58px;
+  background-color: #e6eaf0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0; /* evita encolher */
+  padding: 0 10px;
+  text-align: center;
+}

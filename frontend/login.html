@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta viewport para responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Login SENAI-SP</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Fonte Baloo 2 e NTR -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&family=NTR&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <img src="images/senaiLogo2.png" alt="Logo SENAI">
+  </header>
+
+  <!-- Caixa de login -->
+  <main>
+    <div class="login-box">
+      <h1>Login</h1>
+      <p class="welcome">Bem vindo(a) ao Portal Online SENAI-SP!</p>
+
+      <label class="field-label" for="usuario">Usuário</label>
+      <input type="text" id="usuario" name="usuario" placeholder="Insira seu CPF" class="input">
+
+      <label class="field-label" for="senha">Senha</label>
+      <div class="password-wrapper" style="position: relative;">
+        <input type="password" id="senha" name="senha" placeholder="Insira sua senha" class="input">
+        <!-- Ícone do olho -->
+        <i class="bi bi-eye toggle-password" onclick="togglePassword()" 
+           style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" name="lembrar"> Lembrar de mim
+        </label>
+        <a href="#">Esqueceu sua senha?</a>
+      </div>
+
+      <button class="btn">Entrar</button>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    © SENAI-SP - 2025
+  </footer>
+
+  <script>
+    function togglePassword() {
+      const senha = document.getElementById("senha");
+      const toggle = document.querySelector(".toggle-password");
+
+      if (senha.type === "password") {
+        senha.type = "text";
+        toggle.classList.remove("bi-eye");
+        toggle.classList.add("bi-eye-slash");
+      } else {
+        senha.type = "password";
+        toggle.classList.remove("bi-eye-slash");
+        toggle.classList.add("bi-eye");
+      }
+    }
+  </script>
+</body>
+</html>
