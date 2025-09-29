@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #003075;
+  background-color: #b1040f;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -21,19 +21,20 @@ body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url("images/fundoTelaLogin.png") no-repeat center center/cover;
-  opacity: 0.4;
+  background: url("images/fundoTela.png") no-repeat center center/cover;
+  opacity: 0.7;
   z-index: -1;
+  filter: blur(0px);
 }
 
 header {
   width: 100%;
   height: 58px;
-  background-color: #003075;
+  background-color: #b1040f;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 10px;
+  padding-left: 50px;
   flex-shrink: 0;
   position: fixed;
   top: 0;
@@ -49,7 +50,7 @@ header img {
 footer {
   width: 100%;
   height: 58px;
-  background-color: #003075;
+  background-color: #b1040f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,8 +114,8 @@ main {
 }
 
 .input:focus {
-  border-color: #07387c;
-  box-shadow: 0 0 6px rgba(10, 6, 227, 0.4);
+  border-color: #E30613;
+  box-shadow: 0 0 6px rgba(227, 6, 19, 0.4);
 }
 
 .password-wrapper {
@@ -132,7 +133,7 @@ main {
 .btn {
   width: 100%;
   padding: 10px;
-  background-color: #003075;
+  background-color: #ce0614;
   color: white;
   border: none;
   border-radius: 6px;
@@ -142,7 +143,7 @@ main {
 }
 
 .btn:hover {
-  background-color: #001f4d;
+  background-color: #97040e;
 }
 
 .sem-registro {
