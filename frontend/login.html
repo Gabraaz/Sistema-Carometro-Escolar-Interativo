@@ -24,30 +24,34 @@
   <!-- Caixa de login -->
   <main>
     <section>
-      <div class="login-container">
-        <div class="login-box">
-          <h1>Login</h1>
-          <p class="welcome">Bem vindo(a) ao Portal Online SENAI-SP!</p>
+      <form>
+        <div class="login-container">
+          <div class="login-box">
+            <h1>Login</h1>
+            <p class="welcome">Bem vindo(a) ao Portal Online SENAI-SP!</p>
 
-          <label for="usuario">Usuário</label>
-          <input type="text" id="usuario" name="usuario" placeholder="Insira seu CPF" class="input" required>
-          <label for="senha">Senha</label>
-          <div class="password-wrapper" style="position: relative;">
-            <input type="password" id="senha" name="senha" placeholder="Insira sua senha" class="input" required>
-            <!-- Ícone do olho -->
-            <i class="bi bi-eye-slash toggle-password" onclick="togglePassword()"
-              style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Insira seu CPF" class="input" required>
+            <label for="senha">Senha</label>
+            <div class="password-wrapper" style="position: relative;">
+              <input type="password" id="senha" name="senha" placeholder="Insira sua senha" class="input" required>
+              <!-- Ícone do olho -->
+              <i class="bi bi-eye-slash toggle-password" onclick="togglePassword()"
+                style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
+            </div>  
+            <div class="options">
+              <label>
+                <input type="checkbox" name="lembrar"> Lembrar de mim
+              </label>
+              <a href="#">Esqueceu sua senha?</a>
+            </div>
+            <input class="btn" type="submit" value="Entrar"/>
+            <p class="sem-registro">
+            Sem registro? <a href="register.html">Faça o login aqui</a>
+            </p>'
           </div>
-          <div class="options">
-            <label>
-              <input type="checkbox" name="lembrar"> Lembrar de mim
-            </label>
-            <a href="#">Esqueceu sua senha?</a>
-          </div>
-          <button class="btn">Entrar</button>
-          <p class="sem-registro">
-          Sem registro? <a href="#">Faça o login aqui</a>
-          </p>
+        </div>
+      </form>
     </section>
   </main>
 
@@ -73,4 +77,4 @@
     }
   </script>
 </body>
-</html>
+</html> 

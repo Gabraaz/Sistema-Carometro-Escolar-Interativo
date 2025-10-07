@@ -100,6 +100,7 @@ main {
   font-size: 0.9rem;
   margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
 .input {
@@ -120,6 +121,8 @@ main {
 
 .password-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .options {
