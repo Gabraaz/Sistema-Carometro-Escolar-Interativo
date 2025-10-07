@@ -21,7 +21,7 @@ body {
 header {
   width: 100%;
   height: 58px;
-  background-color: #b1040f;
+  background-color: #e30613;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -104,7 +104,7 @@ main {
 footer {
   width: 100%;
   height: 58px;
-  background-color: #b1040f;
+  background-color: #e30613;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,4 +139,34 @@ footer p {
 
 .btn-logout:hover {
   background-color: #97040e;
+}
+
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: #ffc107;
+}
+
+.nav-menu i {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-menu i:hover {
+  color: #ffc107;
 }
