@@ -24,8 +24,8 @@ header {
   background-color: #e30613;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 50px;
+  justify-content: space-between;
+  padding: 0 50px;  
   position: fixed;
   top: 0;
   left: 0;
@@ -161,7 +161,7 @@ footer p {
 }
 
 .nav-menu i {
-  font-size: 28px;
+  font-size: 50px; /* tamanho do boneco */
   color: white;
   cursor: pointer;
   transition: color 0.3s;
@@ -170,3 +170,7 @@ footer p {
 .nav-menu i:hover {
   color: #ffc107;
 }
+
+
+
+
