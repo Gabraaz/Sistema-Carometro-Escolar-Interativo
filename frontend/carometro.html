@@ -31,13 +31,24 @@
         <button class="btn-add" id="btnAddAluno"><i class="bi bi-person-plus"></i> Adicionar Aluno</button>
       </div>
       <div class="cards-grid" id="alunosGrid">
-        <!-- Cards dos alunos serão inseridos aqui -->
         <!-- Exemplo de card -->
         <article class="aluno-card" data-turma="1A">
           <img src="images/aluno1.jpg" alt="Foto do Aluno" class="aluno-foto">
           <div class="aluno-info">
             <h2 class="aluno-nome">Ulisses Santini</h2>
-            <p class="aluno-turma">Turma: 1º Ano A</p>
+            <p class="aluno-turma">Turma: 2º Ano B</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-view" title="Visualizar"><i class="bi bi-eye"></i></button>
+            <button class="btn-edit" title="Modificar"><i class="bi bi-pencil"></i></button>
+            <button class="btn-delete" title="Apagar"><i class="bi bi-trash"></i></button>
+          </div>
+        </article>
+        <article class="aluno-card" data-turma="1A">
+          <img src="images/aluno2.jpg" alt="Foto do Aluno" class="aluno-foto">
+          <div class="aluno-info">
+            <h2 class="aluno-nome">Gabriel Braz</h2>
+            <p class="aluno-turma">Turma: 2º Ano B</p>
           </div>
           <div class="card-actions">
             <button class="btn-view" title="Visualizar"><i class="bi bi-eye"></i></button>
@@ -71,14 +82,48 @@
       </div>
     </div>
 
-    <!-- Modal Visualizar Aluno -->
-    <div class="modal" id="modalVisualizar">
-      <div class="modal-content">
-        <span class="close-modal" id="closeVisualizar">&times;</span>
-        <h2>Dados do Aluno</h2>
-        <img id="visualizarFoto" src="" alt="Foto do Aluno" class="aluno-foto-modal">
-        <p><b>Nome:</b> <span id="visualizarNome"></span></p>
-        <p><b>Turma:</b> <span id="visualizarTurma"></span></p>
+    <!-- Painel Visualizar Aluno (Modal Centralizado) -->
+    <div class="painel-modal" id="painelVisualizar">
+      <div class="painel-modal-content">
+        <div class="painel-modal-esquerda">
+          <img id="visualizarFoto" src="images/aluno1.jpg" alt="Foto do Aluno" class="aluno-foto-modal">
+          <h2 id="visualizarNome">Ulisses Santini</h2>
+          <p id="visualizarTurma">Turma: 1º Ano A</p>
+        </div>
+        <div class="painel-modal-direita">
+          <section class="dados-pessoais">
+            <h3>Dados Pessoais</h3>
+            <p><b>Data de Nascimento:</b> 11/02/2009</p>
+            <p><b>Responsável:</b> Elisangela Santini</p>
+            <p><b>Email:</b> ulisses.santini@email.com</p>
+            <p><b>Telefone:</b> (11) 99999-8888</p>
+          </section>
+          <section class="ocorrencias">
+            <h3>Ocorrências</h3>
+            <ul>
+              <li>
+                <span class="ocorrencia-data">12/09/2025</span> - <span class="ocorrencia-motivo">Faltou à aula</span>
+              </li>
+              <li>
+                <span class="ocorrencia-data">05/08/2025</span> - <span class="ocorrencia-motivo">Indisciplina</span>
+              </li>
+            </ul>
+          </section>
+          <section class="historico-interacoes">
+            <h3>Histórico de Interações</h3>
+            <ul>
+              <li>Participou da Feira de Ciências (06/2025)</li>
+              <li>Recebeu medalha de matemática (04/2025)</li>
+            </ul>
+          </section>
+          <div class="painel-modal-botoes-inferior">
+            <button class="btn-ocorrencia">Dar Ocorrência</button>
+            <button class="btn-ocorrencia">Modificar Ocorrência</button>
+          </div>
+          <div class="">
+            <button class="btn-fechar" id="fecharPainelVisualizar">&times;</button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -88,6 +133,17 @@
     <p><b>&copy; SENAI-SP 2025</b></p>
   </footer>
 
-  <script src="carometro.js"></script>
+  <script>
+    // Abrir painel modal centralizado
+    document.querySelectorAll('.btn-view').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('painelVisualizar').style.display = 'flex';
+      });
+    });
+    // Fechar painel modal
+    document.getElementById('fecharPainelVisualizar').addEventListener('click', () => {
+      document.getElementById('painelVisualizar').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
