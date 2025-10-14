@@ -1,38 +1,93 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Página Inicial - SENAI-SP</title>
+  <title>Carômetro - SENAI-SP</title>
   <link rel="icon" type="image/png" href="images/favicon.ico">
   <link rel="stylesheet" href="styleCarometro.css">
-
-  <!-- Fonte Baloo 2 e NTR -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&family=NTR&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-
   <!-- Cabeçalho -->
   <header>
     <img src="images/senaiLogo.png" alt="Logo SENAI" onclick="window.location.href='home.html'" style="cursor:pointer;">
-
-    <div class="titulo">Carômetro</div>  
-    
+    <div class="titulo">Carômetro</div>
   </header>
 
   <!-- Conteúdo principal -->
   <main>
+    <section class="carometro-container">
+      <div class="carometro-actions">
+        <select id="turmaSelect" class="turma-select">
+          <option value="todas">Todas as turmas</option>
+          <option value="1A">1º Ano A</option>
+          <option value="1B">1º Ano B</option>
+          <option value="2A">2º Ano A</option>
+          <option value="2B">2º Ano B</option>
+        </select>
+        <input type="text" id="pesquisaAluno" class="pesquisa-aluno" placeholder="Pesquisar aluno...">
+        <button class="btn-add" id="btnAddAluno"><i class="bi bi-person-plus"></i> Adicionar Aluno</button>
+      </div>
+      <div class="cards-grid" id="alunosGrid">
+        <!-- Cards dos alunos serão inseridos aqui -->
+        <!-- Exemplo de card -->
+        <article class="aluno-card" data-turma="1A">
+          <img src="images/aluno1.jpg" alt="Foto do Aluno" class="aluno-foto">
+          <div class="aluno-info">
+            <h2 class="aluno-nome">Ulisses Santini</h2>
+            <p class="aluno-turma">Turma: 1º Ano A</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-view" title="Visualizar"><i class="bi bi-eye"></i></button>
+            <button class="btn-edit" title="Modificar"><i class="bi bi-pencil"></i></button>
+            <button class="btn-delete" title="Apagar"><i class="bi bi-trash"></i></button>
+          </div>
+        </article>
+        <!-- Repita os cards conforme necessário -->
+      </div>
+    </section>
 
+    <!-- Modal Adicionar/Editar Aluno -->
+    <div class="modal" id="modalAluno">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2 id="modalTitle">Adicionar Aluno</h2>
+        <form id="formAluno">
+          <label for="nomeAluno">Nome:</label>
+          <input type="text" id="nomeAluno" name="nomeAluno" required>
+          <label for="turmaAluno">Turma:</label>
+          <select id="turmaAluno" name="turmaAluno" required>
+            <option value="1A">1º Ano A</option>
+            <option value="1B">1º Ano B</option>
+            <option value="2A">2º Ano A</option>
+            <option value="2B">2º Ano B</option>
+          </select>
+          <label for="fotoAluno">Foto:</label>
+          <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*">
+          <button type="submit" class="btn-save">Salvar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Visualizar Aluno -->
+    <div class="modal" id="modalVisualizar">
+      <div class="modal-content">
+        <span class="close-modal" id="closeVisualizar">&times;</span>
+        <h2>Dados do Aluno</h2>
+        <img id="visualizarFoto" src="" alt="Foto do Aluno" class="aluno-foto-modal">
+        <p><b>Nome:</b> <span id="visualizarNome"></span></p>
+        <p><b>Turma:</b> <span id="visualizarTurma"></span></p>
+      </div>
+    </div>
   </main>
-  
+
   <!-- Rodapé -->
   <footer>
     <p><b>&copy; SENAI-SP 2025</b></p>
   </footer>
 
+  <script src="carometro.js"></script>
 </body>
 </html>
