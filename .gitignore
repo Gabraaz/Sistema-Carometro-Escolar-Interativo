@@ -1,0 +1,28 @@
+# Dependências
+# Esta pasta pode conter milhares de arquivos e pode ser recriada com 'npm install'
+node_modules/
+
+# Arquivos de Log
+# Gerados automaticamente em caso de erros
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# Arquivos de Ambiente (MUITO IMPORTANTE)
+# Contém senhas, chaves de API e outras informações sensíveis.
+# NUNCA envie este arquivo para o repositório.
+.env
+
+# Pastas de Build (opcional, mas boa prática)
+# Geradas em processos de build ou compilação
+dist/
+build/
+
+# Arquivos de Sistema Operacional
+# Gerados por macOS e Windows, respectivamente
+.DS_Store
+Thumbs.db
+
+# Arquivos de Editor/IDE
+# Contém configurações locais do seu editor
+.vscode/

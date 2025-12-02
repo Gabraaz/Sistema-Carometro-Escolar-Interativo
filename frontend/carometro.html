@@ -1,149 +1,440 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carômetro - SENAI-SP</title>
-  <link rel="icon" type="image/png" href="images/favicon.ico">
-  <link rel="stylesheet" href="styleCarometro.css">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&family=NTR&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carômetro - Sistema Escolar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .titulo-header { left: 50%; transform: translateX(-50%); position: absolute; }
+        .barra-acoes { padding: 20px; border: 1px solid #eee; }
+        .barra-acoes input, .barra-acoes select { height: 55px; font-size: 1.1rem; }
+        .btn-vermelho { height: 55px; font-size: 1.1rem; padding: 0 30px; }
+    </style>
 </head>
-<body>
-  <!-- Cabeçalho -->
-  <header>
-    <img src="images/senaiLogo.png" alt="Logo SENAI" onclick="window.location.href='home.html'" style="cursor:pointer;">
-    <div class="titulo">Carômetro</div>
-  </header>
+<body class="page-carometro">
 
-  <!-- Conteúdo principal -->
-  <main>
-    <section class="carometro-container">
-      <div class="carometro-actions">
-        <select id="turmaSelect" class="turma-select">
-          <option value="todas">Todas as turmas</option>
-          <option value="1A">1º Ano A</option>
-          <option value="1B">1º Ano B</option>
-          <option value="2A">2º Ano A</option>
-          <option value="2B">2º Ano B</option>
-        </select>
-        <input type="text" id="pesquisaAluno" class="pesquisa-aluno" placeholder="Pesquisar aluno...">
-        <button class="btn-add" id="btnAddAluno"><i class="bi bi-person-plus"></i> Adicionar Aluno</button>
-      </div>
-      <div class="cards-grid" id="alunosGrid">
-        <!-- Exemplo de card -->
-        <article class="aluno-card" data-turma="1A">
-          <img src="images/aluno1.jpg" alt="Foto do Aluno" class="aluno-foto">
-          <div class="aluno-info">
-            <h2 class="aluno-nome">Ulisses Santini</h2>
-            <p class="aluno-turma">Turma: 2º Ano B</p>
-          </div>
-          <div class="card-actions">
-            <button class="btn-view" title="Visualizar"><i class="bi bi-eye"></i></button>
-            <button class="btn-edit" title="Modificar"><i class="bi bi-pencil"></i></button>
-            <button class="btn-delete" title="Apagar"><i class="bi bi-trash"></i></button>
-          </div>
-        </article>
-        <article class="aluno-card" data-turma="1A">
-          <img src="images/aluno2.jpg" alt="Foto do Aluno" class="aluno-foto">
-          <div class="aluno-info">
-            <h2 class="aluno-nome">Gabriel Braz</h2>
-            <p class="aluno-turma">Turma: 2º Ano B</p>
-          </div>
-          <div class="card-actions">
-            <button class="btn-view" title="Visualizar"><i class="bi bi-eye"></i></button>
-            <button class="btn-edit" title="Modificar"><i class="bi bi-pencil"></i></button>
-            <button class="btn-delete" title="Apagar"><i class="bi bi-trash"></i></button>
-          </div>
-        </article>
-        <!-- Repita os cards conforme necessário -->
-      </div>
-    </section>
+    <header>
+        <img src="images/senaiLogo.png" alt="SENAI" onclick="window.location.href='home.html'">
+        <div class="titulo-header">Carômetro</div>
+        <div style="width: 150px;"></div> </header>
 
-    <!-- Modal Adicionar/Editar Aluno -->
+    <main>
+        <div class="carometro-container">
+            
+            <div class="barra-acoes">
+                <div class="filtro-group">
+                    <select id="filtroTurma">
+                        <option value="todas">Todas as turmas</option>
+                        <option value="1">Desenvolvimento de Sistemas</option>
+                    </select>
+                    <input type="text" id="inputBusca" placeholder="Pesquisar por Nome ou ID...">
+                </div>
+                <button class="btn-vermelho" id="btnAddAluno">
+                    <i class="bi bi-person-plus-fill"></i> Adicionar Aluno
+                </button>
+            </div>
+
+            <div class="grid-alunos" id="alunosGrid">
+                <p style="text-align: center; width: 100%;">Carregando sistema...</p>
+            </div>
+        </div>
+    </main>
+
     <div class="modal" id="modalAluno">
-      <div class="modal-content">
-        <span class="close-modal" id="closeModal">&times;</span>
-        <h2 id="modalTitle">Adicionar Aluno</h2>
-        <form id="formAluno">
-          <label for="nomeAluno">Nome:</label>
-          <input type="text" id="nomeAluno" name="nomeAluno" required>
-          <label for="turmaAluno">Turma:</label>
-          <select id="turmaAluno" name="turmaAluno" required>
-            <option value="1A">1º Ano A</option>
-            <option value="1B">1º Ano B</option>
-            <option value="2A">2º Ano A</option>
-            <option value="2B">2º Ano B</option>
-          </select>
-          <label for="fotoAluno">Foto:</label>
-          <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*">
-          <button type="submit" class="btn-save">Salvar</button>
-        </form>
-      </div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 style="color:#ce0614; margin-bottom:20px; text-align:center;">Novo Aluno</h2>
+            <form id="formAluno">
+                <label class="form-label">Nome Completo</label>
+                <input type="text" id="nomeAluno" class="form-input" required>
+                
+                <label class="form-label">Data Nascimento</label>
+                <input type="date" id="nascAluno" class="form-input" required>
+                
+                <label class="form-label">Gênero</label>
+                <select id="generoAluno" class="form-input" required>
+                    <option value="">Selecione...</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+                <label class="form-label">Email Institucional</label>
+                <input type="email" id="emailAluno" class="form-input" required>
+                
+                <input type="hidden" id="idTurmaAluno" value="1"> 
+                
+                <button type="submit" class="btn-save">Cadastrar</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Painel Visualizar Aluno (Modal Centralizado) -->
-    <div class="painel-modal" id="painelVisualizar">
-      <div class="painel-modal-content">
-        <div class="painel-modal-esquerda">
-          <img id="visualizarFoto" src="images/aluno1.jpg" alt="Foto do Aluno" class="aluno-foto-modal">
-          <h2 id="visualizarNome">Ulisses Santini</h2>
-          <p id="visualizarTurma">Turma: 1º Ano A</p>
+    <div class="painel-lateral" id="painelVisualizar">
+        <div class="painel-box">
+            <span class="close-modal" id="fecharPainel" style="top: 15px; right: 20px;">&times;</span>
+            
+            <div class="painel-esq">
+                <img id="visualizarFoto" src="images/aluno_default.png" alt="Aluno">
+                <h2 id="visualizarNome">Nome do Aluno</h2>
+                <p id="visualizarTurma" style="color:#666; font-size:0.9rem; margin-top:5px;">Email</p>
+            </div>
+
+            <div class="painel-dir">
+                <h3>Histórico de Ocorrências</h3>
+                <ul class="lista-ocorrencias" id="listaOcorrencias">
+                    <li>Carregando...</li>
+                </ul>
+
+                <div style="margin-top:auto;">
+                    <button class="btn-save" id="btnAbrirOcorrencia">
+                        <i class="bi bi-exclamation-triangle-fill"></i> Nova Ocorrência
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="painel-modal-direita">
-          <section class="dados-pessoais">
-            <h3>Dados Pessoais</h3>
-            <p><b>Data de Nascimento:</b> 11/02/2009</p>
-            <p><b>Responsável:</b> Elisangela Santini</p>
-            <p><b>Email:</b> ulisses.santini@email.com</p>
-            <p><b>Telefone:</b> (11) 99999-8888</p>
-          </section>
-          <section class="ocorrencias">
-            <h3>Ocorrências</h3>
-            <ul>
-              <li>
-                <span class="ocorrencia-data">12/09/2025</span> - <span class="ocorrencia-motivo">Faltou à aula</span>
-              </li>
-              <li>
-                <span class="ocorrencia-data">05/08/2025</span> - <span class="ocorrencia-motivo">Indisciplina</span>
-              </li>
-            </ul>
-          </section>
-          <section class="historico-interacoes">
-            <h3>Histórico de Interações</h3>
-            <ul>
-              <li>Participou da Feira de Ciências (06/2025)</li>
-              <li>Recebeu medalha de matemática (04/2025)</li>
-            </ul>
-          </section>
-          <div class="painel-modal-botoes-inferior">
-            <button class="btn-ocorrencia">Dar Ocorrência</button>
-            <button class="btn-ocorrencia">Modificar Ocorrência</button>
-          </div>
-          <div class="">
-            <button class="btn-fechar" id="fecharPainelVisualizar">&times;</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </main>
 
-  <!-- Rodapé -->
-  <footer>
-    <p><b>&copy; SENAI-SP 2025</b></p>
-  </footer>
+    <div class="modal" id="modalOcorrencia">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalOcorrencia">&times;</span>
+            <h2 style="color:#ce0614; margin-bottom:20px; text-align:center;">Registrar Ocorrência</h2>
+            <form id="formOcorrencia">
+                
+                <label class="form-label">Data e Horário</label>
+                <input type="datetime-local" id="dataOcorrencia" class="form-input" required>
 
-  <script>
-    // Abrir painel modal centralizado
-    document.querySelectorAll('.btn-view').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.getElementById('painelVisualizar').style.display = 'flex';
-      });
-    });
-    // Fechar painel modal
-    document.getElementById('fecharPainelVisualizar').addEventListener('click', () => {
-      document.getElementById('painelVisualizar').style.display = 'none';
-    });
-  </script>
+                <label class="form-label">Categoria</label>
+                <select id="catOcorrencia" class="form-input">
+                    <option>Advertência Verbal</option>
+                    <option>Advertência Escrita</option>
+                    <option>Suspensão</option>
+                    <option>Atraso</option>
+                    <option>Indisciplina</option>
+                </select>
+
+                <label class="form-label">Observação / Motivo</label>
+                <input type="text" id="motivoOcorrencia" class="form-input" placeholder="Descreva o ocorrido..." required>
+                
+                <button type="submit" class="btn-save">Salvar Registro</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; SENAI-SP 2025 - Sistema de Gestão Escolar
+    </footer>
+
+    <script>
+        // Onde o site vai buscar as informações
+        const API_BASE = "http://localhost:5000/cie_carometro";
+        
+        // Variáveis pra guardar quem tá mexendo no site e qual aluno foi clicado
+        let alunoSelecionadoId = null;
+        let usuarioLogado = null;
+        let listaGlobalAlunos = [];
+
+        // Se o banco não tiver a foto, o site procura pelo nome do aluno aqui nessa lista
+        const mapaFotos = {
+            "Ulisses Santini Gomes": "aluno1.jpg", 
+            "Gabriel Braz Menezes": "aluno2.jpg",
+            "Aluanan Angel de Sousa": "aluanan.webp",
+            "Ana Carolina de Oliveira Monteiro": "anacarolina.webp",
+            "Anna Vitória Martins Ramos": "anavitoria.webp",
+            "Arthur Marques Santos": "arthur marques.jpeg",
+            "Arthur Cintra Faleiros": "arthurfaleiros.webp",
+            "Arthur Cintra de Lacerda": "arthurlacerda.webp",
+            "Sofia Siqueira Belchior": "sofia_belchior.jpeg",
+            "Bryan Miguel Moreira": "bryan.webp",
+            "Eduardo Augusto Tognati": "eduardo.webp",
+            "Flávio Henrique de Souza Filho": "flavio.webp",
+            "Gabriel Rossi Ventura": "gabrielrossi.webp",
+            "Guilherme Bason Garcia Neves": "guilherme.webp",
+            "João Victor Oliveira Silva": "joao.webp",
+            "José Victor Faccirolli": "jose.webp",
+            "Kauan Henrique Melo Silva": "kauan.jpg",
+            "Kauan Borges Plaza": "kauanborges.webp",
+            "Luiz Felipe Campos Margato": "luisfelipe.webp",
+            "Luís Pedro França Paulino": "luispedro.webp",
+            "Pedro Galindo Tavares": "pedro.jpeg",
+            "Rafael Caíres dos Santos": "rafaelcaires.webp",
+            "Rafael Mendes Neves": "rafaelmendes.webp",
+            "Renan Vieira Mobrise": "renan.webp",
+            "Sophia de Oliveira Ferreira": "sopinha.webp",
+            "Vinicius Soares Peroni": "vinicius.webp",
+            "Leonardo Alves da Silva": "leonardo.png",
+            "Keliyah Cristine de Oliveira Martins": "kellya.jpeg",
+            "Davi Azevedo Gonçalves": "davi azevedo.png"
+        };
+    
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verifica se tem alguém logado 
+            const userStorage = localStorage.getItem("usuarioLogado");
+            
+            if (!userStorage) {
+                // Se não tiver logado, chuta de volta pro login
+                window.location.href = "login.html";
+                return;
+            }
+            // Guarda os dados do professor que logou
+            usuarioLogado = JSON.parse(userStorage);
+            
+            // Chama as funções para desenhar a tela e ligar os botões
+            carregarAlunos();
+            configurarEventos();
+        });
+
+        //  BUSCAR ALUNOS NO SERVIDOR
+        async function carregarAlunos() {
+            const grid = document.getElementById('alunosGrid');
+            try {
+                // Vai na API buscar a lista
+                const response = await fetch(`${API_BASE}/aluno`);
+                const alunos = await response.json();
+                
+                // Salva a lista na memória pra usar na pesquisa depois
+                listaGlobalAlunos = alunos;
+                
+                // Manda desenhar os quadradinhos na tela
+                renderizarAlunos(listaGlobalAlunos);
+
+            } catch (error) {
+                // Se der ruim, avisa em vermelho
+                console.error(error);
+                grid.innerHTML = '<p style="color:red; text-align:center">Erro ao conectar com API.</p>';
+            }
+        }
+
+        //  DESENHAR OS QUADRADINHOS
+        function renderizarAlunos(lista) {
+            const grid = document.getElementById('alunosGrid');
+            grid.innerHTML = ''; // Limpa a tela antes de começar
+
+            // Se não tiver ninguém na lista, avisa
+            if (!lista || lista.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; width:100%">Nenhum aluno encontrado.</p>';
+                return;
+            }
+
+            // Para cada aluno da lista, faz isso:
+            lista.forEach(aluno => {
+                
+                //  LÓGICA PRA DESCOBRIR A FOTO
+                let nomeArquivo = aluno.foto;
+                
+                // Se no banco tá vazio, procura na nossa lista manual (mapaFotos)
+                if (!nomeArquivo || nomeArquivo.trim() === "") {
+                    if (mapaFotos[aluno.nome_alunos]) {
+                        nomeArquivo = mapaFotos[aluno.nome_alunos];
+                    }
+                }
+
+                // Monta o link da imagem (adiciona 'images/' na frente)
+                let imgUrl;
+                if (nomeArquivo) {
+                    imgUrl = nomeArquivo.startsWith('images/') ? nomeArquivo : `images/${nomeArquivo}`;
+                } else {
+                    imgUrl = 'images/aluno_default.png'; // Se não achar nada, põe o bonequinho cinza
+                }
+
+                // Cria o HTML do quadradinho
+                const card = document.createElement('div');
+                card.className = 'aluno-card';
+                card.innerHTML = `
+                    <img src="${imgUrl}" alt="Foto" class="aluno-foto" onerror="this.src='images/aluno_default.png'">
+                    <div class="aluno-info">
+                        <div class="aluno-nome" title="${aluno.nome_alunos}">${aluno.nome_alunos}</div>
+                        <div class="aluno-id">ID: ${aluno.id_alunos}</div>
+                        <div class="aluno-turma">${aluno.curso || 'Curso Técnico'}</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-eye" onclick="abrirPainel(${aluno.id_alunos}, '${aluno.nome_alunos}', '${aluno.email_alunos}', '${imgUrl}')">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+                        <button class="btn-del" onclick="deletarAluno(${aluno.id_alunos})">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        //  BARRA DE PESQUISA (FILTRO)
+        document.getElementById('inputBusca').addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase();
+            // Filtra quem tem o nome ou ID parecido com o que foi digitado
+            const filtrados = listaGlobalAlunos.filter(aluno => 
+                aluno.nome_alunos.toLowerCase().includes(termo) || 
+                aluno.id_alunos.toString().includes(termo)
+            );
+            // Redesenha a tela só com os filtrados
+            renderizarAlunos(filtrados);
+        });
+
+        //  ABRIR O PAINEL DE DETALHES (QUANDO CLICA NO OLHO)
+        window.abrirPainel = async (id, nome, email, imgUrl) => {
+            alunoSelecionadoId = id; // Guarda qual aluno foi clicado
+            
+            // Preenche as informações no painel
+            document.getElementById('visualizarNome').innerText = nome;
+            document.getElementById('visualizarTurma').innerText = email;
+            document.getElementById('visualizarFoto').src = imgUrl;
+            
+            // Mostra o painel na tela
+            document.getElementById('painelVisualizar').style.display = "flex";
+            
+            // Vai buscar as ocorrências dele
+            await listarOcorrencias(id);
+        };
+
+        // BUSCAR OCORRÊNCIAS NO BANCO
+        async function listarOcorrencias(id) {
+            const lista = document.getElementById('listaOcorrencias');
+            lista.innerHTML = '<li>Carregando...</li>';
+
+            try {
+                const res = await fetch(`${API_BASE}/ocorrencia`);
+                const dados = await res.json();
+                
+                // Filtra só as ocorrências desse aluno específico
+                const filtradas = dados.filter(o => o.id_alunos == id || o.aluno_envoldido == document.getElementById('visualizarNome').innerText);
+                
+                lista.innerHTML = '';
+                if(filtradas.length === 0) {
+                    lista.innerHTML = '<li style="border:none; text-align:center; color:#888">Nenhum registro encontrado.</li>';
+                    return;
+                }
+
+                // Cria a lista bonitinha
+                filtradas.forEach(oc => {
+                    const data = new Date(oc.data_ocorrencia).toLocaleDateString('pt-BR');
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>${data}</strong> - <span style="color:#ce0614">${oc.categoria_ocorrencia}</span><br>
+                        ${oc.observacao}<br>
+                        <small>Registrado por: ${oc.registrado_por || 'Sistema'}</small>
+                    `;
+                    lista.appendChild(li);
+                });
+
+            } catch (e) {
+                lista.innerHTML = '<li>Erro ao carregar dados.</li>';
+            }
+        }
+
+        // SALVAR NOVA OCORRÊNCIA (BOTÃO SALVAR REGISTRO)
+        document.getElementById('formOcorrencia').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Precisa do CPF de quem tá logado, senão o banco recusa
+            const cpfCorreto = usuarioLogado.cpf_usuario || usuarioLogado.cpf;
+            if (!cpfCorreto) {
+                alert("Erro: Não achei seu CPF. Tente logar de novo.");
+                return;
+            }
+
+            const dados = {
+                data: document.getElementById('dataOcorrencia').value, 
+                observacao: document.getElementById('motivoOcorrencia').value,
+                categoria_ocorrencia: document.getElementById('catOcorrencia').value,
+                cpf_usuario: cpfCorreto,
+                id_alunos: alunoSelecionadoId
+            };
+
+            try {
+                // Manda pro servidor
+                const res = await fetch(`${API_BASE}/ocorrencia`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dados)
+                });
+                
+                if(res.ok) {
+                    alert("Salvo com sucesso!");
+                    document.getElementById('modalOcorrencia').style.display = 'none';
+                    document.getElementById('formOcorrencia').reset();
+                    // Atualiza a lista na hora pra aparecer o novo registro
+                    listarOcorrencias(alunoSelecionadoId);
+                } else { 
+                    // Se der erro no banco, avisa o motivo
+                    const erro = await res.json();
+                    alert("Erro ao salvar: " + (erro.message || erro.error)); 
+                }
+            } catch (error) { alert("Erro de conexão com o servidor."); }
+        });
+
+        //  CADASTRAR NOVO ALUNO
+        document.getElementById('formAluno').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const dados = {
+                nome_alunos: document.getElementById('nomeAluno').value,
+                data_nascimento: document.getElementById('nascAluno').value,
+                email_alunos: document.getElementById('emailAluno').value,
+                genero_alunos: document.getElementById('generoAluno').value,
+                id_turma: document.getElementById('idTurmaAluno').value
+            };
+            try {
+                const res = await fetch(`${API_BASE}/aluno`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dados)
+                });
+                if(res.ok) {
+                    alert("Aluno Cadastrado!");
+                    document.getElementById('modalAluno').style.display = 'none';
+                    document.getElementById('formAluno').reset();
+                    carregarAlunos(); // Recarrega a tela pra aparecer o novo aluno
+                } else { alert("Erro ao cadastrar."); }
+            } catch (error) { alert("Erro de conexão."); }
+        });
+
+        //  EXCLUIR ALUNO (A PARTE DA SEGURANÇA)
+        window.deletarAluno = async (id) => {
+            if(!confirm("Tem certeza que deseja excluir este aluno?")) return;
+            try {
+                const res = await fetch(`${API_BASE}/aluno/${id}`, { method: "DELETE" });
+                if (res.ok) {
+                    alert("Excluído!");
+                    carregarAlunos();
+                } else if (res.status === 409) {
+                    // Erro 409 = O banco bloqueou porque tem histórico (integridade)
+                    const erro = await res.json();
+                    alert(" BLOQUEADO PELO SISTEMA:\n" + erro.message);
+                } else { alert("Erro ao excluir."); }
+            } catch (error) { alert("Erro de conexão."); }
+        };
+
+        // LIGA OS BOTÕES DE ABRIR E FECHAR JANELAS
+        function configurarEventos() {
+            const mAluno = document.getElementById('modalAluno');
+            const mPainel = document.getElementById('painelVisualizar');
+            const mOcorrencia = document.getElementById('modalOcorrencia');
+
+            // Botão Adicionar Aluno
+            document.getElementById('btnAddAluno').onclick = () => mAluno.style.display = "flex";
+            document.getElementById('closeModal').onclick = () => mAluno.style.display = "none";
+            
+            // Botão Fechar Painel Lateral
+            document.getElementById('fecharPainel').onclick = () => mPainel.style.display = "none";
+            
+            // Botão Nova Ocorrência (Dentro do Painel)
+            document.getElementById('btnAbrirOcorrencia').onclick = () => {
+                mOcorrencia.style.display = "flex";
+                
+                // Pega a data e hora de agora e ajusta pro formato do calendário
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                document.getElementById('dataOcorrencia').value = now.toISOString().slice(0,16);
+            };
+            
+            // Botão Fechar Modal de Ocorrência
+            document.getElementById('closeModalOcorrencia').onclick = () => mOcorrencia.style.display = "none";
+        }
+    </script>
 </body>
 </html>

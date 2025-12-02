@@ -1,46 +1,194 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <!-- Meta viewport para responsividade -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Página Inicial - SENAI-SP</title>
-  <link rel="icon" type="image/png" href="images/favicon.ico">
-  <link rel="stylesheet" href="styleHome.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Portal SENAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Fonte Baloo 2 e NTR -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&family=NTR&display=swap" rel="stylesheet">
+    <style>
+        /* Zera margens */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        /* Corpo da pagina */
+        body { 
+            font-family: 'Baloo 2', sans-serif; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            background-color: #fff; 
+        }
+
+        /* Barra vermelha do topo */
+        header { 
+            width: 100%; 
+            height: 70px; 
+            background-color: #e30613; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 50px; 
+            position: fixed; 
+            top: 0; left: 0; 
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header img { width: 160px; height: auto; cursor: pointer; }
+
+        /* Links do canto direito */
+        .header-nav { display: flex; gap: 25px; align-items: center; }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.3s;
+        }
+
+        .header-nav a:hover { opacity: 0.8; }
+
+        /* Barrinha separadora entre os links */
+        .header-nav a:not(:last-child)::after {
+            content: "|";
+            color: rgba(255,255,255,0.4);
+            position: absolute;
+            right: -14px;
+            font-weight: 400;
+        }
+
+        /* Area principal com imagem de fundo */
+        main {
+            flex: 1;
+            margin-top: 70px;
+            background: url('images/imagem senai.webp') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            min-height: calc(100vh - 120px); 
+        }
+
+        /* Mascara escura sobre a imagem */
+        main::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+
+        /* Conteudo central */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+            opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Botao grande central */
+        .btn-hero {
+            background-color: #e30613;
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(227, 6, 19, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-hero:hover {
+            background-color: #c4040f;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(227, 6, 19, 0.6);
+        }
+
+        /* Rodape */
+        footer { 
+            width: 100%; 
+            height: 50px; 
+            background-color: #e30613; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 0.9rem;
+            position: fixed; 
+            bottom: 0; left: 0; 
+            z-index: 100;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ajuste para celular */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1.1rem; }
+            header { padding: 0 20px; }
+            .header-nav { gap: 15px; }
+            .header-nav a { font-size: 1rem; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Cabeçalho -->
-  
-  <header>
 
-    <img src="images/senaiLogo.png" alt="Logo SENAI" onclick="window.location.href='home.html'" style="cursor:pointer;">
+    <header>
+        <img src="images/senaiLogo.png" alt="SENAI" onclick="window.location.reload()">
+        
+        <nav class="header-nav">
+            <a href="login.html">Login</a>
+            <a href="carometro.html">Carômetro</a>
+        </nav>
+    </header>
 
-    <nav class="nav-menu">
-      <a href="home.html">Início</a> 
-      <a href="https://www.sp.senai.br/cursos">Cursos</a>
-      <a href="https://www.sp.senai.br/o-senai">Sobre</a>
-      <a href="carometro.html">Carometro</a>
+    <main>
+        <div class="hero-content">
+            <h1>Portal de Gestão Escolar</h1>
+            <p>Controle de ocorrências, gestão de alunos e acompanhamento pedagógico integrado.</p>
+            
+            <a href="login.html" class="btn-hero">
+                Acessar Sistema <i class="bi bi-arrow-right-circle-fill"></i>
+            </a>
+        </div>
+    </main>
 
+    <footer>
+        &copy; SENAI-SP 2025 - Todos os direitos reservados
+    </footer>
 
-    </nav>
-
-  </header>
-
-  <!-- Caixa de login -->
-  <main>
-
-  </main>
-
-  <!-- Rodapé -->
-  <footer>
-    <p><b>&copy; SENAI-SP 2025</b></p>
-  </footer>
 </body>
-</html> 
+</html>

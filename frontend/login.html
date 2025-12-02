@@ -1,80 +1,123 @@
-<!DOCTYPE html>  
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
+  <!-- define a codificacao do texto e caracteres da pagina -->
   <meta charset="UTF-8">
-  <!-- Meta viewport para responsividade -->
+
+  <!-- ajusta a pagina para funcionar bem em celular e tablet -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- titulo mostrado na aba do navegador -->
   <title>Login - SENAI-SP</title>
+  
+  <!-- icone que aparece na aba do navegador -->
   <link rel="icon" type="image/png" href="images/favicon.ico">
+
+  <!-- arquivo css principal que estiliza toda a pagina -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Fonte Baloo 2 e NTR -->
+  <!-- fontes externas usadas nos textos -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&family=NTR&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap Icons -->
+  <!-- biblioteca de icones usada para mostrar o olho de visualizar senha -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body>
-  <!-- Cabeçalho -->
+
+<body class="page-login">
+
   <header>
-    <img src="images/senaiLogo.png" alt="Logo SENAI">
+    <!-- logo do senai que ao clicar volta para a pagina inicial -->
+    <img src="images/senaiLogo.png" alt="Logo SENAI" onclick="window.location.href='home.html'" style="cursor:pointer;">
   </header>
 
-  <!-- Caixa de login -->
   <main>
     <section>
-      <form action="home.html" method="get">
+      <!-- formulario responsavel por enviar os dados de login -->
+      <form id="loginForm">
+
+        <!-- container central responsavel pelo alinhamento da caixa -->
         <div class="login-container">
+          
+          <!-- caixa branca onde ficam os campos de login -->
           <div class="login-box">
+
+            <!-- titulo do formulario -->
             <h1>Login</h1>
+
+            <!-- mensagem de boas vindas -->
             <p class="welcome">Bem vindo(a) ao Portal Online SENAI-SP!</p>
 
+            <!-- campo usuario -->
             <label for="usuario">Usuário</label>
-            <input type="text" id="usuario" name="usuario" placeholder="Insira seu CPF" class="input" required>
+
+            <!-- entrada onde o usuario digita o cpf com limite e obrigatoriedade -->
+            <input type="text" id="usuario" name="cpf" placeholder="Insira seu CPF" maxlength="11" class="input" required>
+
+            <!-- campo senha -->
             <label for="senha">Senha</label>
+
+            <!-- container que segura o input e o icone do olho -->
             <div class="password-wrapper" style="position: relative;">
+
+              <!-- campo onde a senha e digitada inicialmente oculta -->
               <input type="password" id="senha" name="senha" placeholder="Insira sua senha" class="input" required>
-              <!-- Ícone do olho -->
+
+              <!-- icone que mostra ou esconde a senha quando clicado -->
               <i class="bi bi-eye-slash toggle-password" onclick="togglePassword()"
                 style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>  
+
+            <!-- opcoes adicionais como lembrar senha e recuperar senha -->
             <div class="options">
               <label>
                 <input type="checkbox" name="lembrar"> Lembrar de mim
               </label>
+
+              <!-- link para recuperar senha -->
               <a href="#">Esqueceu sua senha?</a>
             </div>
+
+            <!-- botao de enviar os dados do formulario -->
             <input class="btn" type="submit" value="Entrar"/>
+
+            <!-- link de cadastro para quem ainda nao tem conta -->
             <p class="sem-registro">
             Sem registro? <a href="register.html">Faça o cadastro aqui</a>
             </p>
           </div>
         </div>
       </form>
+      
+      <!-- area que pode exibir mensagens de erro ou aviso -->
+      <p id="mensagemLogin"></p>
     </section>
   </main>
 
-  <!-- Rodapé -->
   <footer>
+    <!-- texto do rodape -->
     <p><b>&copy; SENAI-SP 2025</b></p>
   </footer>
 
-  <script>
-    function togglePassword() {
-      const senha = document.getElementById("senha");
-      const toggle = document.querySelector(".toggle-password");
+  <!-- arquivo javascript externo com funcoes do sistema -->
+  <script src="app.js"></script>
 
-      if (senha.type === "password") {
-        senha.type = "text";
-        toggle.classList.remove("bi-eye-slash");
-        toggle.classList.add("bi-eye");
-      } else {
-        senha.type = "password";
-        toggle.classList.remove("bi-eye");
-        toggle.classList.add("bi-eye-slash");
-      }
+  <script>
+  // funcao que alterna entre mostrar e esconder a senha
+  function togglePassword() {
+    const senha = document.getElementById("senha");
+    const toggle = document.querySelector(".toggle-password");
+
+    if (senha.type === "password") {
+      senha.type = "text"; 
+      toggle.classList.remove("bi-eye-slash");
+      toggle.classList.add("bi-eye");
+    } else {
+      senha.type = "password"; 
+      toggle.classList.remove("bi-eye");
+      toggle.classList.add("bi-eye-slash");
     }
+  }
   </script>
+
 </body>
-</html> 
+</html>

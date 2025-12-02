@@ -1,22 +1,26 @@
-const express = require('express');// Importa o módulo Express 
+const express = require("express"); // Importa o módulo Express
+const cors = require("cors");
+const testConnect = require("./db/testConnect");
 
-class appcontroler {
-    constructor(){
-        this.express = express(); // Cria uma instância do Express dentro da classe
-        this.middlewares();//Chama o método middlewares para configurar os middlewares
-        this.routes();
+class AppController {
+  constructor() {
+    this.express = express(); // Cria uma instância do Express dentro da classe
+    this.middlewares(); // Chamando o método middlewares
+    this.routes(); // Chamando o método routes
+    testConnect();
+  }
 
-    }
-    middlewares(){
-        // Permite a aplicação a aceitar dados no formato JSON nas requisições.
-        this.express.use(express.json());
-    }   
-    // Definindo as Rotas
-    routes(){
-        const apiRoutes = require('./routes/apiRoutes')
-        this.express.use('/carometro',apiRoutes)
-            
-      }// Final Routes
+  middlewares() {
+  this.express.use(express.json());
+  this.express.use(express.urlencoded({ extended: true })); // Necessário para receber dados de formulários HTML
+  this.express.use(cors());
+  }
+
+  // Nós definimos as nossas ROTAS
+  routes() {
+    const apiRoutes = require('./routes/apiRoutes')
+    this.express.use('/cie_carometro',apiRoutes)
+  }
 }
-// Disponibiliza a instância do Express já configurada, permitindo seu uso em outros arquivos
-module.exports = new appcontroler().express;
+// Exporta a instância do Express já configurada acima, tornando-a acessível em outros arquivos
+module.exports = new AppController().express;

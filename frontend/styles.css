@@ -1,155 +1,259 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Tira os espacos extras de todos os elementos */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Define a fonte padrao e a cor de fundo do site */
+body { 
+    font-family: 'Baloo 2', sans-serif; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    background-color: #ffffff; 
 }
 
-body {
-  background-color: #e20814;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: 'Baloo 2', sans-serif;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background-size: cover;
-  background-attachment: fixed;
+/* Barra vermelha que fica fixa no topo da pagina */
+header { 
+    width: 100%; 
+    height: 70px; 
+    background-color: #e30613; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 40px; 
+    position: fixed; 
+    top: 0; left: 0; 
+    z-index: 100;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url("images/fundoTela.png") no-repeat center center/cover;
-  opacity: 0.7;
-  z-index: -1;
-  filter: blur(0px);
+/* Tamanho do logo do Senai no topo */
+header img { 
+    width: 160px; 
+    height: auto; 
+    cursor: pointer; 
 }
 
-header {
-  width: 100%;
-  height: 58px;
-  background-color: #e30613;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 50px;
-  flex-shrink: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
+/* Centraliza o titulo Carometro na barra vermelha */
+.titulo-header { 
+    position: absolute; 
+    left: 50%; transform: translateX(-50%);
+    color: white; font-weight: 800; font-size: 1.8rem; 
+    letter-spacing: 1px; text-transform: uppercase;
 }
 
-header img {
-  width: 150px;
-  height: auto;
+/* Barra vermelha que fica fixa no rodape */
+footer { 
+    width: 100%; height: 50px; 
+    background-color: #e30613; 
+    display: flex; justify-content: center; align-items: center; 
+    color: white; font-weight: bold; 
+    position: fixed; bottom: 0; left: 0; 
+    z-index: 10; 
 }
 
-footer {
-  width: 100%;
-  height: 58px;
-  background-color: #e30613;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  flex-shrink: 0;
-  text-align: center;
+/* Fundo vermelho da tela de login */
+.page-login { background-color: #e20814; overflow: hidden; }
+
+/* Imagem de fundo transparente na tela de login */
+.page-login::before { 
+    content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+    background: url("images/fundoTela.png") center/cover; opacity: 0.7; z-index: -1; 
 }
 
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 116px); /* espaço entre header e footer */
-  box-sizing: border-box;
-  padding: 0 20px;
+/* Centraliza a caixa de login no meio da tela */
+.page-login main { flex: 1; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); padding: 0 20px; }
+
+/* Ajusta o container do login */
+.login-container { display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
+
+/* A caixa branca onde digita usuario e senha */
+.login-box { 
+    background: #F9F9F9; padding: 40px; border-radius: 12px; 
+    max-width: 380px; width: 100%; box-shadow: 0px 6px 25px rgba(0,0,0,0.2); 
+    border-top: 6px solid #e30613; 
 }
 
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+/* Titulo Login dentro da caixa */
+.login-box h1 { margin-bottom: 10px; text-align: center; color: #e30613; }
+
+/* Texto de boas vindas */
+.welcome { font-size: 0.9rem; margin-bottom: 20px; text-align: center; color: #333; }
+
+/* Caixas de texto para digitar usuario e senha */
+.input { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; outline: none; }
+.input:focus { border-color: #E30613; }
+
+/* Botao de entrar no login */
+.btn { width: 100%; padding: 10px; background-color: #e20814; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+.btn:hover { background-color: #97040e; }
+
+/* Link para criar cadastro */
+.sem-registro { font-size: 0.85rem; margin-top: 15px; text-align: center; }
+.sem-registro a { color: #e30613; text-decoration: none; font-weight: bold; }
+
+/* Icone do olho para mostrar senha */
+.password-wrapper { position: relative; width: 100%; }
+.toggle-password { position: absolute; right: 10px; top: 38%; cursor: pointer; color: #666; }
+
+/* Ajusta o espaco do conteudo principal para nao ficar embaixo do topo */
+.page-carometro main { 
+    margin-top: 70px; padding: 40px 0 80px 0; 
+    width: 100%; display: flex; justify-content: center; 
 }
 
-.login-box {
-  background: #F9F9F9;
-  padding: 40px;
-  border-radius: 12px;
-  max-width: 350px;
-  width: 100%;
-  box-shadow: 0px 6px 25px rgba(0,0,0,0.2);
-  text-align: left;
+/* Limita a largura do conteudo para nao esticar demais */
+.carometro-container { 
+    width: 100%; max-width: 1250px; 
+    display: flex; flex-direction: column; 
+    gap: 30px; padding: 0 20px; 
 }
 
-.login-box h1 {
-  margin-bottom: 10px;
-  text-align: center;
+/* Barra branca onde ficam os filtros e o botao adicionar */
+.barra-acoes { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-bottom: 25px; gap: 20px; width: 100%;
+    background-color: #f8f8f8; padding: 15px; 
+    border-radius: 12px; border: 1px solid #eee;
 }
 
-.welcome {
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  color: #333;
-  text-align: center;
+/* Agrupa os campos de busca */
+.filtro-group { display: flex; gap: 15px; flex: 1; }
+
+/* Estilo dos campos de pesquisa grandes */
+.barra-acoes select, 
+.barra-acoes input[type="text"] { 
+    height: 50px; padding: 0 20px; border-radius: 8px; 
+    border: 2px solid #e0e0e0; font-size: 1.1rem; 
+    outline: none; color: #333; font-family: 'Baloo 2', sans-serif; 
+    font-weight: 600; background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  outline: none;
-  transition: 0.3s;
+/* Faz o campo de texto esticar */
+.barra-acoes input[type="text"] { flex: 1; width: 100%; }
+
+/* Efeito ao clicar no campo de pesquisa */
+.barra-acoes select:focus,
+.barra-acoes input:focus {
+    border-color: #ce0614;
+    box-shadow: 0 0 0 4px rgba(206, 6, 20, 0.1);
 }
 
-.input:focus {
-  border-color: #E30613;
-  box-shadow: 0 0 6px rgba(227, 6, 19, 0.4);
+/* Botao vermelho grande de adicionar aluno */
+.btn-vermelho { 
+    height: 50px; padding: 0 30px; background-color: #ce0614; 
+    color: white; border: none; border-radius: 8px; font-weight: 800; 
+    font-size: 1.1rem; cursor: pointer; display: flex; 
+    align-items: center; gap: 12px; font-family: 'Baloo 2', sans-serif; 
+    box-shadow: 0 4px 10px rgba(206, 6, 20, 0.25);
+    transition: transform 0.2s; white-space: nowrap;
+}
+.btn-vermelho:hover { background-color: #a0040f; transform: translateY(-2px); }
+
+/* Organiza os alunos lado a lado */
+.grid-alunos { 
+    display: flex; flex-wrap: wrap; gap: 30px; 
+    justify-content: center; width: 100%; 
 }
 
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
+/* O quadradinho branco de cada aluno */
+.aluno-card { 
+    background: #F9F9F9; width: 230px; border-radius: 16px; 
+    padding: 25px 15px; display: flex; flex-direction: column; 
+    align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    border: 1px solid #eee; position: relative; transition: transform 0.2s; 
+}
+/* Efeito de subir quando passa o mouse no card */
+.aluno-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+/* Foto redonda do aluno */
+.aluno-foto { 
+    width: 100px; height: 100px; border-radius: 50%; 
+    object-fit: cover; border: 4px solid #ce0614; margin-bottom: 15px; 
+    background: #ddd; 
 }
 
-.options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  margin-bottom: 15px;
+/* Nome do aluno */
+.aluno-info { text-align: center; margin-bottom: 15px; width: 100%; }
+.aluno-nome { 
+    font-weight: 800; color: #333; font-size: 1.15rem; 
+    line-height: 1.2; margin-bottom: 5px; height: 2.8rem; overflow: hidden; 
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.aluno-id { color: #666; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
+.aluno-turma { color: #ce0614; font-weight: 700; font-size: 0.9rem; }
+
+/* Botoes de olho e lixeira no card */
+.card-actions { display: flex; gap: 12px; }
+.card-actions button { 
+    width: 38px; height: 38px; border: none; border-radius: 50%; 
+    cursor: pointer; color: white; display: flex; align-items: center; 
+    justify-content: center; font-size: 1.1rem; transition: transform 0.2s; 
+}
+.btn-eye { background-color: #ce0614; }
+.btn-del { background-color: #444; }
+.card-actions button:hover { transform: scale(1.15); }
+
+/* Fundo escuro das janelas que abrem por cima */
+.modal, .painel-lateral { 
+    display: none; position: fixed; top: 0; left: 0; 
+    width: 100%; height: 100%; background: rgba(0,0,0,0.5); 
+    z-index: 1000; justify-content: center; align-items: center; 
 }
 
-.btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #e20814;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+/* Caixa branca da janela de cadastro */
+.modal-content { 
+    background: #fff; padding: 35px; border-radius: 16px; 
+    width: 420px; position: relative; display: flex; flex-direction: column; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
-.btn:hover {
-  background-color: #97040e;
+/* Botao de fechar janela no canto */
+.close-modal, .btn-fechar { 
+    position: absolute; top: 15px; right: 20px; 
+    font-size: 1.8rem; color: #ce0614; cursor: pointer; font-weight: bold; 
 }
 
-.sem-registro {
-  font-size: 0.85rem;
+/* Painel grande de detalhes do aluno */
+.painel-box { 
+    background: #fff; width: 750px; height: 550px; 
+    border-radius: 20px; display: flex; overflow: hidden; 
+    position: relative; max-width: 95%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
 }
 
+/* Lado esquerdo do painel com a foto */
+.painel-esq { 
+    background: #f8f8f8; width: 240px; padding: 40px 20px; 
+    display: flex; flex-direction: column; align-items: center; 
+    border-right: 1px solid #eee; text-align: center;
+}
+.painel-esq img { 
+    width: 130px; height: 130px; border-radius: 50%; 
+    border: 4px solid #ce0614; object-fit: cover; margin-bottom: 15px; 
+}
+.painel-esq h2 { color: #ce0614; font-size: 1.3rem; font-weight: 800; margin-bottom: 5px; }
+
+/* Lado direito do painel com o historico */
+.painel-dir { flex: 1; padding: 30px; display: flex; flex-direction: column; }
+.painel-dir h3 { 
+    color: #333; margin-bottom: 20px; border-bottom: 2px solid #ce0614; 
+    padding-bottom: 5px; display: inline-block; font-weight: 800; 
+}
+
+
+.lista-ocorrencias { list-style: none; margin-bottom: 20px; flex: 1; overflow-y: auto; }
+.lista-ocorrencias li { 
+    background: #fff; border: 1px solid #eee; border-radius: 8px; 
+    padding: 12px; margin-bottom: 10px; border-left: 4px solid #ce0614; 
+}
+
+/* Botoes de salvar dentro das janelas */
+.btn-save, .btn-submit { 
+    width: 100%; margin-top: 20px; padding: 12px; font-size: 1.1rem; 
+    background-color: #ce0614; color: white; border: none; 
+    border-radius: 8px; font-weight: bold; cursor: pointer; 
+}
+.btn-save:hover { background-color: #a0040f; }
+
+/* Textos acima dos campos de digitar */
+.form-label { display: block; margin: 12px 0 5px; color: #333; font-weight: 700; }
+.form-input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }

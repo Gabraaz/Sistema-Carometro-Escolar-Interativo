@@ -1,17 +1,19 @@
 {
-  "name": "carometro_escolar",
+  "name": "api",
   "version": "1.0.0",
-  "description": "API para sistema carometro escolar SENAI",
+  "description": "API sprint",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js"
   },
-  "author": "Gabriel Braz, Ulisses Santini Gomes e Kellyah",
+  "author": "Ulisses,Gabriel,Kellya",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mysql2": "^3.15.2",
+    "sql2": "^0.0.1"
   }
 }
